@@ -12,10 +12,7 @@ import { TouchableOpacity } from "react-native-gesture-handler";
 
 export default function Options() {
   const [text, onChangeText] = React.useState("Exemple@email.com");
-  const [textPass, onChangePass] = React.useState("Your Pass");
-  const [textPassConfirm, onChangePassConfirm] = React.useState("Confirm Pass");
-  const [locale, onChangeLocale] = React.useState("Localização");
-  const [number, onChangeNumber] = React.useState("**/**/****");
+  const [textPass, onChangePass] = React.useState("yourPass");
   const router = useRouter();
 
   return (
@@ -27,6 +24,7 @@ export default function Options() {
           accessibilityLabel="Logo de raincife"
         />
       </View>
+      <Text style={styles.textTitle}>Bem-vindo(a) ao Raincife</Text>
       <SafeAreaView style={styles.safe}>
         <Text style={styles.text}>Digite seu email ou número de telefone:</Text>
         <TextInput
@@ -40,30 +38,10 @@ export default function Options() {
           onChangeText={onChangePass}
           value={textPass}
         />
-        <Text style={styles.text}>Confirme sua senha:</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangePassConfirm}
-          value={textPassConfirm}
-        />
-        <Text style={styles.text}>Data de nascimento:</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeNumber}
-          value={number}
-          placeholder="useless placeholder"
-          keyboardType="numbers-and-punctuation"
-        />
-        <Text style={styles.text}>Localização:</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeLocale}
-          value={locale}
-        />
       </SafeAreaView>
       <TouchableOpacity style={styles.botao} onPress={() => {}}>
-        <Text style={styles.textoBotao}>Criar conta</Text>
-      </TouchableOpacity>
+          <Text style={styles.textoBotao}>Entrar</Text>
+        </TouchableOpacity>
     </View>
   );
 }
@@ -76,6 +54,7 @@ const styles = StyleSheet.create({
     justifyContent: "flex-start",
   },
   safe: {
+    marginTop: 65,
     alignItems: "flex-start",
     marginBottom: 20,
   },
@@ -84,7 +63,7 @@ const styles = StyleSheet.create({
     height: 80,
     width: 80,
     marginTop: 20,
-    marginBottom: 70,
+    marginBottom: 80,
     resizeMode: "contain",
   },
   options: {
@@ -127,6 +106,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#F2F2F2",
     borderRadius: 15,
     padding: 10,
-    color: "rgba(0,0,0,0.5)",
+    color: 'rgba(0,0,0,0.5)',
   },
 });

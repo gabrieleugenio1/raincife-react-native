@@ -14,11 +14,12 @@ export default function Options() {
         />
       </View>
       <View style={styles.options}>
-        <TouchableOpacity style={styles.botao} onPress={() => { return router.replace('./sign-up');}}>
-          <Text style={styles.textoBotao}>Cadastre-se</Text>
+        <TouchableOpacity style={styles.botao} onPress={() => { return router.replace('./signUp');}}>
+          <Text style={styles.textoBotao}>Cadastrar-se</Text>
         </TouchableOpacity>
+        <Text style={styles.text}>Já possui uma conta?</Text>
         <TouchableOpacity >
-          <Text>Faça login</Text>
+          <Text style={styles.text} onPress={() => { return router.replace('./login');}}>Faça login</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -42,7 +43,9 @@ const styles = StyleSheet.create({
   },
   botao: {
     backgroundColor: "#F2F2F2",
-    paddingVertical: 1,
+    width: 180,
+    height: 50,
+    paddingVertical: 10,
     paddingHorizontal: 3,
     borderRadius: 14,
     borderWidth: 1,
@@ -50,8 +53,13 @@ const styles = StyleSheet.create({
     cursor: "pointer",
   },
   textoBotao: {
+    textAlign: "center",
     color: "#34A0A4",
     fontSize: 19,
     fontWeight: "bold",
   },
+  text: {
+    color: "#F2F2F2",
+    marginTop: 5,
+  }
 });
