@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+body{
+    background-color: var(--cor-verde);
+}
+
+/*Definindo as letras como branco*/
+h1,
+label,
+small,
+a,
+h4,
+h5{
+    color: var(--cor-branco);
+}
+/*Alterando todos os inputs*/
+input, select{
+    margin: 2px 0;
+    background-color: #F2F2F2;
+    border-radius: 14px;
+    border-color: var(--cor-branco);
+}
+
+/*Tela login e cadastro*/
+
+/*Cabeçalho*/
+.nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: .5rem;
+}
+
+.nav__icon{
+    margin-left: 1rem;
+}
+
+.nav__imagem{
+    margin: 0 auto;
+}
+
+.nav_icon-icone{
+    color: var(--cor-branco);
+}
+
+.cadastro__forms__espaco{   
+     margin-bottom: 0.2rem;
+}
+.cadastro__forms__espaco-validacao{
+    color: #de0f0f;
+    font-weight: 400;
+}
+/*Toda a parte do forms e h1*/
+.login{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*Alterando o input email e password*/
+input[type="email"], input[type="password"], input[type="text"], input[type="number"] {
+    height: 2.2rem;
+    width: 100%;
+}
+
+input[type="email"]::placeholder, input[type="password"]::placeholder, input[type="text"]::placeholder, input[type="number"]::placeholder {
+    padding-left: 8px;
+
+}
+
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+/*Botão Submit*/
+.login__forms___submit{
+    display: flex; 
+    justify-content: center;
+}
+
+input[type="submit"], button{
+    align-content: center;
+    color: var(--cor-verde);
+    padding: .4rem 2.6rem;
+    cursor: pointer;
+}
+
+input[type="submit"]{
+    font-size: 1rem;
+    font-weight: 700;
+    transition: background-color 1s ease-in-out;
+}
+
+input[type="submit"]:hover {
+ 
+    background-color: #97EBF3F2;
+}
+
+/*Fim tela login*/
+
+/*Tela de abertura*/
+.logo{
+    margin-top: 5rem;
+    display: flex;
+    justify-content: center;
+}
+/*Tamanho da imagem*/
+.logo > div > a > img{
+    height: 10rem;
+}
+
+.cadastro__login > section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 4rem;
+}
+
+.cadastro__login___social{
+    text-align: center;
+}
+.cadastro__login___social-botao{
+    width: 280px;
+}
+h4, h5{
+    margin: 0;
+}
+
+button:not(.emergency) {
+    align-content: center;
+    color: var(--cor-verde);
+    padding: .4rem 2.6rem;
+    cursor: pointer;
+    border-radius: 14px;
+    border: 1px solid var(--cor-branco);
+}
+
+
+/*Tela cadastro*/
+
+select,
+input[type="date"]{
+    height: 2.2rem;
+    width: 100%;
+}
+
+.cadastro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.cadastro__forms___submit{
+    display: flex; 
+    justify-content: center;
+}
+/*Fim cadastro*/

@@ -1,0 +1,35 @@
+{
+  "name": "Raincife",
+  "short_name": "Raincife",
+  "description": "Veja se há risco no seu local",
+  "start_url": "/home",
+  "display": "standalone",
+  "background_color": "#34A0A4",
+  "theme_color": "#34A0A4",
+  "icons": [
+    {
+      "src": "/assets/img/logo-verde.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/assets/img/logo-verde.svg",
+      "sizes": "512x512",
+      "type": "image/svg+xml"
+    },
+    {
+      "src": "/assets/img/logo-verde.png", 
+      "sizes": "512x512",
+      "type": "image/png" 
+    }
+  ],
+  "splash_pages": [
+    {
+      "src": "/assets/img/logo-verde.svg", 
+      "sizes": "512x512", 
+      "type": "image/svg+xml", 
+      "purpose": "any" 
+    }
+  ]
+}
