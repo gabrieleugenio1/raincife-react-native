@@ -1,25 +1,16 @@
 'use strict';
 import routes from '../routes/index.mjs';
-import flash from "connect-flash";
 import session from "express-session";
 import MongoStore from 'connect-mongo'
 import options from '../db/Mongodb.mjs';
-import { fileURLToPath } from 'url';
-import { dirname } from 'path';
 import cors from 'cors';
-
-const currentDir = dirname(fileURLToPath(import.meta.url));
 
 function configExpress(express, app) {
 
   //Configurando express
-  app.set("view engine", "ejs");
-  app.set('views', `${currentDir}/../views`);
-  app.use(express.static("public"));
   app.use(express.json());
   app.use(express.urlencoded({ extended: true }));
   app.use(cors());
-  app.use(flash());
 
   //Session
   app.use(session({
@@ -37,7 +28,7 @@ function configExpress(express, app) {
 
   //Página não encontrada: 404
   app.get('*', (req, res) => {
-    res.status(404).json({message:'404'});
+    res.status(404).json({error:'404'});
   });
 };
 
