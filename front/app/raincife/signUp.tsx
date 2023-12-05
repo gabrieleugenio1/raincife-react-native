@@ -7,23 +7,40 @@ import {
   TextInput,
   SafeAreaView,
 } from "react-native";
-import React from "react";
+import React, {useState} from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import axios from "axios";
 
 export default function Options() {
-  const [text, onChangeText] = React.useState("Exemple@email.com");
-  const [textPass, onChangePass] = React.useState("Your Pass");
-  const [textPassConfirm, onChangePassConfirm] = React.useState("Confirm Pass");
-  const [locale, onChangeLocale] = React.useState("Localização");
-  const [number, onChangeNumber] = React.useState("**/**/****");
+  const [text, onChangeText] = React.useState("");
+  const [textPass, onChangePass] = React.useState("");
+  const [textPassConfirm, onChangePassConfirm] = React.useState("");
   const router = useRouter();
 
+  const handleSignUp = async() => {
+    if (textPass !== textPassConfirm) {
+      alert("As senhas não são iguais");
+    } else {
+      await axios.post(`http://192.168.0.169:3000/criar-conta`, {
+        emailCel: text,
+        senha: textPass,
+        confirmarSenha: textPassConfirm,
+      }).then((response) => {
+        console.log(response);
+        if (response.status === 201) {
+          alert("Conta criada com sucesso.");
+          router.push('./autenticado/home');
+        }
+      }).catch((error) => console.log( error.response?.data));
+    }
+  } 
+  
   return (
     <View style={styles.container}>
       <View>
         <Image
           style={styles.images}
-          source={require("../../../assets/img/logo-branca.png")}
+          source={require("../../assets/img/logo-branca.png")}
           accessibilityLabel="Logo de raincife"
         />
       </View>
@@ -34,37 +51,29 @@ export default function Options() {
         <Text style={styles.text}>Digite seu email ou número de telefone:</Text>
         <TextInput
           style={styles.input}
+          placeholder="Digite seu email ou número de telefone"
           onChangeText={onChangeText}
-          value={text}
+          keyboardType="email-address"
+          value={text} 
         />
         <Text style={styles.text}>Digite sua senha:</Text>
         <TextInput
           style={styles.input}
           onChangeText={onChangePass}
+          placeholder="********"
+          secureTextEntry={true}
           value={textPass}
         />
         <Text style={styles.text}>Confirme sua senha:</Text>
         <TextInput
           style={styles.input}
           onChangeText={onChangePassConfirm}
+          placeholder="********"
+          secureTextEntry={true}
           value={textPassConfirm}
         />
-        <Text style={styles.text}>Data de nascimento:</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeNumber}
-          value={number}
-          placeholder="useless placeholder"
-          keyboardType="numbers-and-punctuation"
-        />
-        <Text style={styles.text}>Localização:</Text>
-        <TextInput
-          style={styles.input}
-          onChangeText={onChangeLocale}
-          value={locale}
-        />
       </SafeAreaView>
-      <TouchableOpacity style={styles.botao} onPress={() => {}}>
+      <TouchableOpacity style={styles.botao} onPress={() => {handleSignUp()}}>
         <Text style={styles.textoBotao}>Criar conta</Text>
       </TouchableOpacity>
     </View>

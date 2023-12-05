@@ -9,42 +9,72 @@ import {
 } from "react-native";
 import React from "react";
 import { TouchableOpacity } from "react-native-gesture-handler";
+import axios from "axios";
 
 export default function Options() {
-  const [text, onChangeText] = React.useState("Exemple@email.com");
-  const [textPass, onChangePass] = React.useState("yourPass");
+  const [email, onChangeEmail] = React.useState<string>("");
+  const [password, onChangePassword] = React.useState<string>("");
   const router = useRouter();
+
+  async function handleLogin() {
+    if (email === "" || password === "") {
+      alert("Preencha os campos");
+      return;
+    }
+    await axios
+      .post(`http://192.168.0.169:3000/login`, {
+        emailCel: email,
+        senha: password,
+      })
+      .then((response) => {
+        if (response.status === 200) {
+          router.push("./autenticado/home");
+        }
+      })
+      .catch((error) => {
+        alert("Email ou senha incorretos");
+        console.log(error.response?.data
+        )});
+  }
 
   return (
     <View style={styles.container}>
       <View>
         <Image
           style={styles.images}
-          source={require("../../../assets/img/logo-branca.png")}
+          source={require("../../assets/img/logo-branca.png")}
           accessibilityLabel="Logo de raincife"
         />
       </View>
       <Text style={styles.textTitle}>Bem-vindo(a) ao Raincife</Text>
       <SafeAreaView style={styles.safe}>
-      <TouchableOpacity style={styles.voltar} onPress={() => {router.back()}}>
-        <Text style={styles.textoBotaoVoltar}>Voltar</Text>
-      </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.voltar}
+          onPress={() => {
+            router.back();
+          }}
+        >
+          <Text style={styles.textoBotaoVoltar}>Voltar</Text>
+        </TouchableOpacity>
         <Text style={styles.text}>Digite seu email ou número de telefone:</Text>
         <TextInput
           style={styles.input}
-          onChangeText={onChangeText}
-          value={text}
+          placeholder="Digite seu email ou número de telefone"
+          onChangeText={onChangeEmail}
+          value={email}
         />
         <Text style={styles.text}>Digite sua senha:</Text>
         <TextInput
           style={styles.input}
-          onChangeText={onChangePass}
-          value={textPass}
+          placeholder="********"
+          onChangeText={onChangePassword}
+          secureTextEntry={true}
+          value={password}
         />
       </SafeAreaView>
-      <TouchableOpacity style={styles.botao} onPress={() => {}}>
-          <Text style={styles.textoBotao}>Entrar</Text>
-        </TouchableOpacity>
+      <TouchableOpacity style={styles.botao} onPress={() => handleLogin()}>
+        <Text style={styles.textoBotao}>Entrar</Text>
+      </TouchableOpacity>
     </View>
   );
 }
@@ -72,10 +102,10 @@ const styles = StyleSheet.create({
   options: {
     alignItems: "center",
   },
-  voltar:{
-    width:100,
+  voltar: {
+    width: 100,
   },
-  textoBotaoVoltar:{
+  textoBotaoVoltar: {
     color: "#F2F2F2",
     fontSize: 19,
   },
@@ -116,6 +146,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#F2F2F2",
     borderRadius: 15,
     padding: 10,
-    color: 'rgba(0,0,0,0.5)',
+    color: "rgba(0,0,0,0.5)",
   },
 });

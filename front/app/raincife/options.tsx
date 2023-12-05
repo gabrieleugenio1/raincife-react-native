@@ -9,7 +9,7 @@ export default function Options() {
     <View style={styles.container}>
       <View style={styles.images}>
         <Image
-          source={require("../../../assets/img/logo-branca.png")}
+          source={require("../../assets/img/logo-branca.png")}
           accessibilityLabel="Logo de raincife"
         />
       </View>

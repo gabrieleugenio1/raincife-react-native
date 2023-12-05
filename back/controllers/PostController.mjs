@@ -10,7 +10,7 @@ import moment from 'moment';
 import validarUserAlteracao from '../functions/validarUserAlteracao.mjs';
 export default class PostController {
 
-    static async cadastro (req, res) {
+    static async cadastro (req, res) {      
         const user = req.body;
         const validacao = validarUser(user); 
          if(validacao?.emailCel) {
@@ -25,7 +25,6 @@ export default class PostController {
                     await Users.create({nome: validacao.nome, telefone: validacao.emailCel, senha: senhaCriptografada, 
                         dataNascimento: validacao.dataNascimento,morro: validacao.localizacao, tipo: totalUsers === 0 ? "admin" : "comum"});    
                 };
-                req.flash("success", ["Conta criada com sucesso!"]);
                 return res.status(201).json({success: "Conta criada com sucesso!"});     
             } catch (error) {
                 if (error.name === 'SequelizeUniqueConstraintError') {
@@ -55,15 +54,6 @@ export default class PostController {
         }).then(user => {
           if (user) {
             if (compareSync(senha, user.senha)) {
-              req.session.user = {
-                id: user.id,
-                nome: user.nome,
-                email: user.email,
-                telefone: user.telefone,
-                morro: user.morro,
-                tipo: user.tipo,
-                dataNascimento: user.dataNascimento
-              };
               return res.status(200).json({success: "Login efetuado com sucesso!"});
             } else {
               return res.status(400).json({error: "Login ou senha inválidos."});
@@ -109,7 +99,6 @@ export default class PostController {
           if(diferenca <= 5 && (emailUser.ativo === true || emailUser.ativo === 1) && emailQuery === emailUser['User.email']) {
               await Users.update({senha:senhaCriptografada}, {where: {email: emailUser['User.email']}})
               await Codigo.update({ativo:false}, {where: {UserId: emailUser['User.id'], codigo: CodigoHidden}})
-              req.flash('success',['Alteração feita com sucesso!']);
               return res.status(200).json({success: "Alteração feita com sucesso!"});
           };
           return res.status(400).json({error: "Código expirado ou inexistente."});

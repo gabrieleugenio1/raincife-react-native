@@ -3,14 +3,13 @@
 //Definindo os principais módulos
 import { Router } from 'express';
 import PostController from '../controllers/PostController.mjs';
-import Middleware from '../middlewares/Middlewares.mjs';
 const router = Router();
 
 router
-      .post('/criar-conta', Middleware.jaEstaAutenticado, PostController.cadastro)  
-      .post('/envio-link', Middleware.jaEstaAutenticado, PostController.envioLink) 
-      .post('/criar-nova-senha', Middleware.jaEstaAutenticado, PostController.criarNovaSenha) 
-      .post('/login-conta', Middleware.jaEstaAutenticado, PostController.login)
-      .post('/admin/alterar-user/:id', Middleware.admin, PostController.alterarUser)
-      .post('/admin/delete-user/:id', Middleware.admin, PostController.deleteUser)
+      .post('/criar-conta', PostController.cadastro)  
+      .post('/envio-link', PostController.envioLink) 
+      .post('/criar-nova-senha', PostController.criarNovaSenha) 
+      .post('/login', PostController.login)
+      .post('/admin/alterar-user/:id',PostController.alterarUser)
+      .post('/admin/delete-user/:id',PostController.deleteUser)
 export default router;

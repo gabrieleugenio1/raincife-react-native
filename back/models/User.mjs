@@ -11,7 +11,7 @@ const User = Conn.define("User", {
   },
   nome: {
     type: DataTypes.STRING(120),
-    allowNull: false,
+    allowNull: true,
   },
   email: {
     type: DataTypes.STRING(120),
@@ -39,7 +39,7 @@ const User = Conn.define("User", {
   },
   morro: {
     type: DataTypes.STRING(30),
-    allowNull: false,
+    allowNull: true,
   },
   tipo: {
     type: DataTypes.ENUM("comum", "admin"),

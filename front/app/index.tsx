@@ -20,7 +20,7 @@ export default function App() {
     <View style={styles.container}>
       <View >
         <Image
-            source={require('../../assets/img/logo-branca.png')}
+            source={require('../assets/img/logo-branca.png')}
             accessibilityLabel="Logo de raincife"
         />
       </View>
